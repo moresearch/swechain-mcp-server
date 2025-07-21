@@ -1,0 +1,1 @@
+# swechain-mcp-server
