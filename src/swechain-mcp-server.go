@@ -306,10 +306,12 @@ func main() {
 		Description: "Close/update an auction. Required: auctionId, status, issue, description, winner, from.",
 	}, closeAuctionHandler)
 
-	mcp.AddTool(server, &mcp.Tool{
-		Name:        "create-and-fund-address",
-		Description: "Create new key and fund it. Required: keyName, funderAddress. Optional: amount.",
-	}, createAndFundAddressHandler)
+	/*
+		mcp.AddTool(server, &mcp.Tool{
+			Name:        "create-and-fund-address",
+			Description: "Use only for new users. Create new key and fund it. Required: keyName, funderAddress. Optional: amount.",
+		}, createAndFundAddressHandler)
+	*/
 
 	log.Println("MCP server starting on stdio")
 	if err := server.Run(context.Background(), mcp.NewStdioTransport()); err != nil {
@@ -804,6 +806,7 @@ func closeAuctionHandler(ctx context.Context, sess *mcp.ServerSession, params *m
 	}, nil
 }
 
+/*
 func createAndFundAddressHandler(ctx context.Context, sess *mcp.ServerSession, params *mcp.CallToolParamsFor[CreateAndFundAddressParams]) (*mcp.CallToolResultFor[any], error) {
 	log.Printf("INFO: Handling 'create-and-fund-address' tool request")
 
@@ -886,7 +889,7 @@ func createAndFundAddressHandler(ctx context.Context, sess *mcp.ServerSession, p
 		Content: []mcp.Content{&mcp.TextContent{Text: result}},
 	}, nil
 }
-
+*/
 // Helper functions with enhanced error handling
 
 func getAddressForKey(keyName string) (string, error) {
